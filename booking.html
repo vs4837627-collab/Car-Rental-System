@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booking | Mathura Rental</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Navbar here -->
+
+<section class="section light">
+    <h2>Book Your Car</h2>
+
+     <form class="booking-form" id="bookingForm">
+
+        <input type="text" placeholder="Full Name" required>
+        <input type="tel" placeholder="Phone Number" required>
+        <input type="email" placeholder="Email Address">
+
+        <select required>
+            <option value="">Select Car Type</option>
+            <option>Sedan</option>
+            <option>SUV</option>
+            <option>Hatchback</option>
+            <option>Luxury</option>
+        </select>
+
+        <label>Pickup Date</label>
+        <input type="date" required>
+
+        <label>Return Date</label>
+        <input type="date" required>
+
+        <textarea placeholder="Pickup Location / Message"></textarea>
+
+        <button type="submit" class="btn">Confirm Booking</button>
+    </form>
+</section>
+
+</body>
+</html>
+<nav class="navbar">
+    <div class="logo">
+        <img src="logo.png.png" alt="Mathura Rental Logo">
+    </div>
+
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+    <div class="nav-links" id="navLinks">
+        <a href="home.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="booking.html">Booking</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</nav>
+<script>
+document.getElementById("bookingForm")
+.addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData.entries());
+
+    const res = await fetch("http://localhost:3000/booking", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(data)
+    });
+
+    alert("Booking Sent Successfully!");
+});
+</script>
+<input name="fullname" type="text" placeholder="Full Name" required>
+<input name="phone" type="tel" placeholder="Phone Number" required>
+<input name="email" type="email">
+
+
